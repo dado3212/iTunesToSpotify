@@ -14,6 +14,10 @@
 		A496BFE321A7573C00E89E49 /* iTunesToSpotifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A496BFE221A7573C00E89E49 /* iTunesToSpotifyTests.swift */; };
 		A496BFEE21A7573C00E89E49 /* iTunesToSpotifyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A496BFED21A7573C00E89E49 /* iTunesToSpotifyUITests.swift */; };
 		A496BFFC21A7687800E89E49 /* SpotifyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A496BFFB21A7687800E89E49 /* SpotifyHelper.swift */; };
+		A496BFFE21A7A80600E89E49 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A496BFFD21A7A80600E89E49 /* Extensions.swift */; };
+		A496C00021A7B10B00E89E49 /* XMLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A496BFFF21A7B10B00E89E49 /* XMLViewController.swift */; };
+		A496C00221A7B69900E89E49 /* BorderedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A496C00121A7B69900E89E49 /* BorderedView.swift */; };
+		A496C00421A7BDE600E89E49 /* XMLHelperClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A496C00321A7BDE600E89E49 /* XMLHelperClasses.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +52,10 @@
 		A496BFED21A7573C00E89E49 /* iTunesToSpotifyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesToSpotifyUITests.swift; sourceTree = "<group>"; };
 		A496BFEF21A7573C00E89E49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A496BFFB21A7687800E89E49 /* SpotifyHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyHelper.swift; sourceTree = "<group>"; };
+		A496BFFD21A7A80600E89E49 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		A496BFFF21A7B10B00E89E49 /* XMLViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLViewController.swift; sourceTree = "<group>"; };
+		A496C00121A7B69900E89E49 /* BorderedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedView.swift; sourceTree = "<group>"; };
+		A496C00321A7BDE600E89E49 /* XMLHelperClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLHelperClasses.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +111,10 @@
 				A496BFFB21A7687800E89E49 /* SpotifyHelper.swift */,
 				A496BFD321A7573C00E89E49 /* Assets.xcassets */,
 				A496BFD521A7573C00E89E49 /* Main.storyboard */,
+				A496BFFF21A7B10B00E89E49 /* XMLViewController.swift */,
+				A496C00321A7BDE600E89E49 /* XMLHelperClasses.swift */,
+				A496C00121A7B69900E89E49 /* BorderedView.swift */,
+				A496BFFD21A7A80600E89E49 /* Extensions.swift */,
 				A496BFD821A7573C00E89E49 /* Info.plist */,
 				A496BFD921A7573C00E89E49 /* iTunesToSpotify.entitlements */,
 			);
@@ -263,8 +275,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A496BFD221A7573A00E89E49 /* ViewController.swift in Sources */,
+				A496C00221A7B69900E89E49 /* BorderedView.swift in Sources */,
+				A496C00021A7B10B00E89E49 /* XMLViewController.swift in Sources */,
+				A496C00421A7BDE600E89E49 /* XMLHelperClasses.swift in Sources */,
 				A496BFFC21A7687800E89E49 /* SpotifyHelper.swift in Sources */,
 				A496BFD021A7573A00E89E49 /* AppDelegate.swift in Sources */,
+				A496BFFE21A7A80600E89E49 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

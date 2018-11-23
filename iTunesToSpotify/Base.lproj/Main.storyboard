@@ -685,7 +685,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Import Playlist to Spotify" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="iTunes to Spotify" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
@@ -702,31 +702,67 @@
             </objects>
             <point key="canvasLocation" x="75" y="250"/>
         </scene>
-        <!--View Controller-->
+        <!--Upload View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="iTunesToSpotify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XfG-lQ-9wD" customClass="XMLUploadViewController" customModule="iTunesToSpotify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="349" height="184"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AQR-yK-sQH">
-                                <rect key="frame" x="164" y="93" width="177" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Select iTunes XML File" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="DJS-Wg-edx">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="selectXMLFile:" target="XfG-lQ-9wD" id="6gH-HF-aQG"/>
-                                </connections>
-                            </button>
+                            <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="JSs-ct-daG" userLabel="Background Color">
+                                <rect key="frame" x="0.0" y="0.0" width="349" height="184"/>
+                                <view key="contentView" id="IGk-cb-DiQ">
+                                    <rect key="frame" x="0.0" y="0.0" width="349" height="184"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="nPC-a8-xJA" customClass="XMLUploadView" customModule="iTunesToSpotify" customModuleProvider="target">
+                                            <rect key="frame" x="106" y="23" width="138" height="138"/>
+                                            <subviews>
+                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yxJ-aH-avN">
+                                                    <rect key="frame" x="40" y="32" width="57" height="75"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="75" id="Aw2-yk-zf7"/>
+                                                        <constraint firstAttribute="width" secondItem="yxJ-aH-avN" secondAttribute="height" multiplier="133:178" id="DRi-PI-SSW"/>
+                                                    </constraints>
+                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Up Arrow" id="cNW-oi-anf"/>
+                                                    <color key="contentTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="nPC-a8-xJA" secondAttribute="height" multiplier="1:1" id="P9M-jK-YK0"/>
+                                                <constraint firstItem="yxJ-aH-avN" firstAttribute="centerX" secondItem="nPC-a8-xJA" secondAttribute="centerX" id="ZQd-IM-PPV"/>
+                                                <constraint firstItem="yxJ-aH-avN" firstAttribute="centerY" secondItem="nPC-a8-xJA" secondAttribute="centerY" id="gHW-Qg-oc5"/>
+                                            </constraints>
+                                        </customView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="nPC-a8-xJA" firstAttribute="centerX" secondItem="IGk-cb-DiQ" secondAttribute="centerX" id="XyH-ke-iHn"/>
+                                        <constraint firstItem="nPC-a8-xJA" firstAttribute="height" secondItem="IGk-cb-DiQ" secondAttribute="height" multiplier="0.75" id="ejo-1d-qbU"/>
+                                        <constraint firstItem="nPC-a8-xJA" firstAttribute="centerY" secondItem="IGk-cb-DiQ" secondAttribute="centerY" id="gUN-wA-jgY"/>
+                                    </constraints>
+                                </view>
+                                <color key="borderColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="fillColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
+                            </box>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="JSs-ct-daG" firstAttribute="height" secondItem="m2S-Jp-Qdl" secondAttribute="height" id="73J-2i-8QS"/>
+                            <constraint firstItem="JSs-ct-daG" firstAttribute="width" secondItem="m2S-Jp-Qdl" secondAttribute="width" id="YAH-8K-KSj"/>
+                            <constraint firstItem="JSs-ct-daG" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="llz-go-N2I"/>
+                            <constraint firstItem="JSs-ct-daG" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="okh-GT-L2i"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="upArrowView" destination="yxJ-aH-avN" id="Pjl-26-t8P"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="655"/>
+            <point key="canvasLocation" x="109.5" y="633"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Up Arrow" width="133" height="178"/>
+    </resources>
 </document>
