@@ -13,6 +13,7 @@
 		A496BFD721A7573C00E89E49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A496BFD521A7573C00E89E49 /* Main.storyboard */; };
 		A496BFE321A7573C00E89E49 /* iTunesToSpotifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A496BFE221A7573C00E89E49 /* iTunesToSpotifyTests.swift */; };
 		A496BFEE21A7573C00E89E49 /* iTunesToSpotifyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A496BFED21A7573C00E89E49 /* iTunesToSpotifyUITests.swift */; };
+		A496BFFC21A7687800E89E49 /* SpotifyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A496BFFB21A7687800E89E49 /* SpotifyHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		A496BFE921A7573C00E89E49 /* iTunesToSpotifyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iTunesToSpotifyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A496BFED21A7573C00E89E49 /* iTunesToSpotifyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesToSpotifyUITests.swift; sourceTree = "<group>"; };
 		A496BFEF21A7573C00E89E49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A496BFFB21A7687800E89E49 /* SpotifyHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 			children = (
 				A496BFCF21A7573A00E89E49 /* AppDelegate.swift */,
 				A496BFD121A7573A00E89E49 /* ViewController.swift */,
+				A496BFFB21A7687800E89E49 /* SpotifyHelper.swift */,
 				A496BFD321A7573C00E89E49 /* Assets.xcassets */,
 				A496BFD521A7573C00E89E49 /* Main.storyboard */,
 				A496BFD821A7573C00E89E49 /* Info.plist */,
@@ -192,6 +195,11 @@
 				TargetAttributes = {
 					A496BFCB21A7573A00E89E49 = {
 						CreatedOnToolsVersion = 10.0;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 					A496BFDD21A7573C00E89E49 = {
 						CreatedOnToolsVersion = 10.0;
@@ -255,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A496BFD221A7573A00E89E49 /* ViewController.swift in Sources */,
+				A496BFFC21A7687800E89E49 /* SpotifyHelper.swift in Sources */,
 				A496BFD021A7573A00E89E49 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
