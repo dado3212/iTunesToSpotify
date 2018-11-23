@@ -11,6 +11,59 @@ import AppKit
 import Cocoa
 
 class XMLUploadView : BorderedView {
+    let highlightAlpha: CGFloat = 0.1
+
+    required init(coder decoder: NSCoder) {
+        super.init(coder: decoder)!
+
+        self.registerForDraggedTypes([
+            .fileURL,
+            .URL
+        ])
+    }
+
+    override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
+        self.layer?.backgroundColor = NSColor(white: 1.0, alpha: highlightAlpha).cgColor
+        let res = checkExtension(sender)
+        if res {
+            print("COPY")
+            return .copy
+        }
+        return NSDragOperation()
+    }
+
+    override func draggingExited(_ sender: NSDraggingInfo?) {
+        self.layer?.backgroundColor = NSColor(white: 1, alpha: 0).cgColor;
+    }
+
+    override func prepareForDragOperation(_ sender: NSDraggingInfo) -> Bool {
+         self.layer?.backgroundColor = NSColor(white: 1, alpha: 0).cgColor;
+        return true
+    }
+
+    override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
+        print("perform drag operation")
+        guard let pasteboard = sender.draggingPasteboard.propertyList(forType: NSPasteboard.PasteboardType(rawValue: "NSFilenamesPboardType")) as? NSArray,
+            let path = pasteboard[0] as? String
+            else { return false }
+
+        //GET YOUR FILE PATH !!!
+        handleXMLUrl(URL(fileURLWithPath: path))
+        return true
+    }
+
+    func checkExtension(_ draggingInfo: NSDraggingInfo) -> Bool {
+        guard let board = draggingInfo.draggingPasteboard.propertyList(forType: NSPasteboard.PasteboardType("NSFilenamesPboardType")) as? NSArray,
+            let path = board[0] as? String
+            else { return false }
+
+        let suffix = URL(fileURLWithPath: path).pathExtension
+        if suffix.lowercased() == "xml" {
+            return true
+        }
+        return false
+    }
+
     override func mouseDown(with theEvent: NSEvent) {
         let openPanel: NSOpenPanel = NSOpenPanel()
         openPanel.canChooseFiles = true
@@ -84,6 +137,8 @@ class XMLUploadViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        upArrowView.unregisterDraggedTypes()
 
         upArrowView.image = upArrowView.image!.imageTintedWithColor(NSColor(calibratedWhite: 1.0, alpha: 1.0))
     }
