@@ -1,16 +1,45 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow, ipcMain } = require('electron');
+const request = require('request');
 
 var xmlPath = '';
+var spotifyToken = '';
 
 ipcMain.on('switchToMain', (event, arg) => {
   xmlPath = arg;
   mainWindow.loadFile('html/convert.html');
+  mainWindow.setBounds({width: 800, height: 600});
 });
 
 ipcMain.on('getXmlPath', (event, arg) => {
   event.returnValue = xmlPath;
-})
+});
+
+ipcMain.on('getSpotifyToken', (event, arg) => {
+  event.returnValue = spotifyToken;
+});
+
+let client_id = "3779c98dc12a4cadbe0ccb1167dfb8e9";
+let client_secret = "87fae4aa4cb5405fbc305f16af32a95c";
+
+request(
+  {
+    method: 'POST',
+    url: 'https://accounts.spotify.com/api/token',
+    form: { grant_type: 'client_credentials' },
+    headers : {
+      'Authorization': 'Basic ' + Buffer.from(`${client_id}:${client_secret}`).toString('base64'),
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  },
+  function (error, response, body) {
+    if (error) {
+      return console.error('ERROR getting Spotify token: ' + error);
+    }
+    spotifyToken = JSON.parse(body).access_token;
+    console.log(spotifyToken);
+  }
+);
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -18,7 +47,7 @@ let mainWindow;
 
 function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 800, height: 600});
+  mainWindow = new BrowserWindow({width: 400, height: 250});
 
   // and load the index.html of the app.
   mainWindow.loadFile('html/upload.html');
