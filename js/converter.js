@@ -10,28 +10,6 @@ var spotifyToken;
 $(document).ready(() => {
   handleXML(ipcRenderer.sendSync('getXmlPath'));
   spotifyToken = ipcRenderer.sendSync('getSpotifyToken');
-  console.log(spotifyToken);
-
-  request(
-    {
-      method: 'POST',
-      url: 'https://accounts.spotify.com/api/token',
-      form: { grant_type: 'client_credentials' },
-      headers : {
-        'Authorization': 'Basic ' + Buffer.from(`${process.env.CLIENT_ID}:${process.env.CLIENT_SECRET}`).toString('base64'),
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-    },
-    function (error, response, body) {
-      if (error) {
-        return console.error('ERROR getting Spotify token: ' + error);
-      }
-      console.log(response);
-      console.log(body);
-      spotifyToken = JSON.parse(body).access_token;
-      console.log(spotifyToken);
-    }
-  );
 
   $('.close').on('click', () => {
     $('.modal').css('display', 'none');

@@ -50,7 +50,7 @@ function createWindow () {
   mainWindow.loadFile('html/upload.html');
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 
   mainWindow.setResizable(false);
 
