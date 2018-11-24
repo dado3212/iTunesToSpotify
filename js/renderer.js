@@ -1,7 +1,22 @@
-const { ipcRenderer } = require('electron');
+const { ipcRenderer, remote } = require('electron');
 
 $(document).ready(() => {
   let uploader = $('.uploader');
+  uploader.on('click', () => {
+    remote.dialog.showOpenDialog({
+      filters: [
+        { name: 'XML Files', extensions: ['xml'] },
+      ],
+      properties: ['openFile']
+    }, function (files) {
+      if (files !== undefined) {
+        console.log(files);
+        console.log(files[0]);
+        let path = files[0];
+        ipcRenderer.send('switchToMain', path);
+      }
+    });
+  });
   uploader.on('dragover', () => {
     if (!uploader.hasClass('hovered')) {
       uploader.addClass('hovered');

@@ -10,10 +10,22 @@ var spotifyToken;
 $(document).ready(() => {
   handleXML(ipcRenderer.sendSync('getXmlPath'));
   spotifyToken = ipcRenderer.sendSync('getSpotifyToken');
+
+  $('.close').on('click', () => {
+    $('.modal').css('display', 'none');
+  });
+
+  $('.modal .modal-content .clickSelect').on('click', () => {
+    var range = document.createRange();
+    var selection = window.getSelection();
+    range.selectNodeContents($('.modal .modal-content p')[0]);
+
+    selection.removeAllRanges();
+    selection.addRange(range);
+  });
 });
 
 function handleXML(xmlPath) {
-  console.log(xmlPath);
   fs.readFile(xmlPath, function(err, data){
     let parsed = plist.parse(data.toString());
 
@@ -42,9 +54,6 @@ function buildPlaylistItem(i) {
 
     let downloadElement = $('<span class="download"><img src="../images/download.svg"></span>');
     downloadElement.on('click', (e) => {
-      e.stopPropagation();
-      e.preventDefault();
-
       handlePlaylistDownload(downloadElement.parent().data('id'));
     });
 
@@ -69,8 +78,10 @@ function handlePlaylistClick(i) {
 
   for (var j = 0; j < playlistTracks.length; j++) {
     let info = tracks[playlistTracks[j]['Track ID']];
+    let status = info.uri ? 'found' : '';
+
     let trackElement = $(`
-      <div class="track">
+      <div class="track ${status}">
         <span class="title">${info.Name}</span>
         <span class="artist">${info.Artist}</span>
       </div>
@@ -85,6 +96,8 @@ function handlePlaylistDownload(i) {
 
   let trackList = $('.tracks');
 
+  let spotifyURIs = [];
+
   let handleTrackNumber = (j) => {};
   handleTrackNumber = (trackNum) => {
     if (trackNum < playlistTracks.length) {
@@ -92,16 +105,22 @@ function handlePlaylistDownload(i) {
 
       getSpotifyURI(track, (uri) => {
         if (uri) {
-          console.log(uri);
+          spotifyURIs.push(uri);
         }
         handleTrackNumber(trackNum + 1);
       });
+    } else {
+      displayModal(spotifyURIs);
     }
   }
   handleTrackNumber(0);
 }
 
 function getSpotifyURI(track, callback) {
+  if (track.uri) {
+    callback(track.uri);
+    return;
+  }
   if (spotifyToken) {
     let requestURL = 'https://api.spotify.com/v1/search?q=';
     requestURL += encodeURIComponent(track.Name);
@@ -126,16 +145,19 @@ function getSpotifyURI(track, callback) {
           return;
         }
         $('.track[data-id=' + track['Track ID'] + ']').addClass('found');
-        track['uri']= body.tracks.items[0].uri;
+        track.uri = body.tracks.items[0].uri;
         callback(body.tracks.items[0].uri);
       }
     );
   } else {
-    console.log('Spotify token');
-    console.log(spotifyToken);
     $('.track[data-id=' + track['Track ID'] + ']').addClass('failed');
     callback();
   }
+}
+
+function displayModal(spotifyURIs) {
+  $('.modal .modal-content p').html(spotifyURIs.join("\n"));
+  $('.modal').css('display', 'block');
 }
 
 module.exports = {  };
