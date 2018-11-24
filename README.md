@@ -2,6 +2,25 @@
 
 iTunes to Spotify is an Electron application that helps to convert iTunes playlists to Spotify playlists.  It takes in an `iTunes Music Library.xml` file, and tries to match them to Spotify tracks, which you can easily copy and paste into a Spotify playlist.
 
+## Instructions
+
+To convert your playlist, just follow these easy steps.
+
+1. Create an iTunes Library XML file by following the [instructions here](https://osxdaily.com/2018/05/23/itunes-library-xml-file-missing-fix/).
+<p align="center">
+  <img src="upload.png" height="300" alt=""/>
+</p>
+2. Drag the XML file to the upload box, or click the box to choose it from your computer.
+<p align="center">
+  <img src="playlistChoice.png" height="300" alt=""/>
+</p>
+3. Click any playlist on the left to see the tracks in it loaded on the right.  Clicking the 'Download' button will start the download process for all tracks in it.
+<p align="center">
+  <img src="trackView.png" height="300" alt=""/>
+</p>
+4. When all tracks have been processed (green for found, red for failed), it will popup this window with all of the track IDs.  Just click and copy with 'Command + C', and then paste them into an empty Spotify playlist.
+
+
 ### Run Locally
 - Run `npm install` to build the node_modules folder.
 - To run locally, use `npm start`.
