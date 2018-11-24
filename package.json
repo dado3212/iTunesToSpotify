@@ -27,7 +27,6 @@
     "electron-builder": "^20.36.2"
   },
   "dependencies": {
-    "dotenv": "^6.1.0",
     "plist": "^3.0.1",
     "request": "^2.88.0"
   }
