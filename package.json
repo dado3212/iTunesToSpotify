@@ -1,22 +1,18 @@
 {
-  "name": "electron-quick-start",
+  "name": "iTunesToSpotify",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "description": "Convert iTunes playlists from XML file to Spotify playlists",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
   },
-  "repository": "https://github.com/electron/electron-quick-start",
-  "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
-  ],
-  "author": "GitHub",
+  "repository": "https://github.com/dado3212/iTunesToSpotify",
+  "author": "Alex Beals",
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "^3.0.7"
+  },
+  "dependencies": {
+    "plist": "^3.0.1"
   }
 }
