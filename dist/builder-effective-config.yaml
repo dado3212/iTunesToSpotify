@@ -1,0 +1,9 @@
+directories:
+  output: dist
+  buildResources: build
+appId: com.alexbeals.iTunesToSpotify
+mac:
+  icon: icons/mac/icon.icns
+win:
+  icon: icons/win/icon.icns
+electronVersion: 3.0.7

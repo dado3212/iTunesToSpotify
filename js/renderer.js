@@ -10,8 +10,6 @@ $(document).ready(() => {
       properties: ['openFile']
     }, function (files) {
       if (files !== undefined) {
-        console.log(files);
-        console.log(files[0]);
         let path = files[0];
         ipcRenderer.send('switchToMain', path);
       }

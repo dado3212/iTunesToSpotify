@@ -1,6 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
-require('dotenv').config();
 const request = require('request');
+const { CLIENT_ID, CLIENT_SECRET } = require('./secret.js');
 
 let xmlPath = '';
 let spotifyToken = '';
@@ -28,7 +28,7 @@ request(
     url: 'https://accounts.spotify.com/api/token',
     form: { grant_type: 'client_credentials' },
     headers : {
-      'Authorization': 'Basic ' + Buffer.from(`${process.env.CLIENT_ID}:${process.env.CLIENT_SECRET}`).toString('base64'),
+      'Authorization': 'Basic ' + Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString('base64'),
       'Content-Type': 'application/x-www-form-urlencoded'
     }
   },
@@ -41,11 +41,16 @@ request(
 );
 
 function createWindow () {
-  mainWindow = new BrowserWindow({width: 500, height: 400});
+  mainWindow = new BrowserWindow({
+    width: 500,
+    height: 400,
+    backgroundColor: '#222222',
+    icon: '../icons/png/64x64.png',
+  });
   mainWindow.loadFile('html/upload.html');
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools();
 
   mainWindow.setResizable(false);
 

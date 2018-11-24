@@ -4,13 +4,27 @@
   "description": "Convert iTunes playlists from XML file to Spotify playlists",
   "main": "./js/main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "postinstall": "install-app-deps",
+    "pack": "build --dir",
+    "dist": "build"
+  },
+  "build": {
+    "appId": "com.alexbeals.iTunesToSpotify",
+    "mac": {
+      "icon": "icons/mac/icon.icns"
+    },
+    "win": {
+      "icon": "icons/win/icon.icns"
+    }
   },
   "repository": "https://github.com/dado3212/iTunesToSpotify",
   "author": "Alex Beals",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^3.0.7"
+    "builder": "^4.0.0",
+    "electron": "^3.0.7",
+    "electron-builder": "^20.36.2"
   },
   "dependencies": {
     "dotenv": "^6.1.0",
