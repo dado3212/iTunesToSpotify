@@ -1,6 +1,6 @@
 {
   "name": "iTunesToSpotify",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Convert iTunes playlists from XML file to Spotify playlists",
   "main": "./js/main.js",
   "scripts": {
@@ -24,7 +24,8 @@
   "devDependencies": {
     "builder": "^4.0.0",
     "electron": "^3.0.7",
-    "electron-builder": "^20.36.2"
+    "electron-builder": "^20.36.2",
+    "lodash": ">=4.17.5"
   },
   "dependencies": {
     "plist": "^3.0.1",

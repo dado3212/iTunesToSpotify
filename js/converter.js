@@ -78,16 +78,18 @@ function handlePlaylistClick(i) {
 
   for (var j = 0; j < playlistTracks.length; j++) {
     let info = tracks[playlistTracks[j]['Track ID']];
-    let status = info.uri ? 'found' : '';
+    if (info) {
+      let status = info.uri ? 'found' : '';
 
-    let trackElement = $(`
-      <div class="track ${status}">
-        <span class="title">${info.Name}</span>
-        <span class="artist">${info.Artist}</span>
-      </div>
-    `);
-    trackElement.attr('data-id', info['Track ID']);
-    trackList.append(trackElement);
+      let trackElement = $(`
+        <div class="track ${status}">
+          <span class="title">${info.Name || "Unknown"}</span>
+          <span class="artist">${info.Artist || "Unknown"}</span>
+        </div>
+      `);
+      trackElement.attr('data-id', info['Track ID']);
+      trackList.append(trackElement);
+    }
   }
 }
 
@@ -103,12 +105,16 @@ function handlePlaylistDownload(i) {
     if (trackNum < playlistTracks.length) {
       let track = tracks[playlistTracks[trackNum]['Track ID']];
 
-      getSpotifyURI(track, (uri) => {
-        if (uri) {
-          spotifyURIs.push(uri);
-        }
+      if (track) {
+        getSpotifyURI(track, (uri) => {
+          if (uri) {
+            spotifyURIs.push(uri);
+          }
+          handleTrackNumber(trackNum + 1);
+        });
+      } else {
         handleTrackNumber(trackNum + 1);
-      });
+      }
     } else {
       displayModal(spotifyURIs);
     }
@@ -150,8 +156,10 @@ function getSpotifyURI(track, callback) {
       }
     );
   } else {
-    $('.track[data-id=' + track['Track ID'] + ']').addClass('failed');
-    callback();
+    setTimeout(() => {
+      $('.track[data-id=' + track['Track ID'] + ']').addClass('failed');
+      callback();
+    }, 30);
   }
 }
 
