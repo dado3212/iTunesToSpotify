@@ -1,2 +1,5 @@
 js/secret.js
+dist/mac
+dist/*.yml
 node_modules
+.DS_Store
