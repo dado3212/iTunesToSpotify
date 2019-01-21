@@ -23,6 +23,7 @@ To convert your playlist, just follow these easy steps.
 
 ### Run Locally
 - Run `npm install` to build the node_modules folder.
+- Create a `secret.js` file in the `js` folder, of the form `export { CLIENT_ID = '...', CLIENT_SECRET = '...' }` where `CLIENT_ID` and `CLIENT_SECRET` are the keys for your Spotify application created in the [Spotify developer interface](https://developer.spotify.com).
 - To run locally, use `npm start`.
 - To build for distribution, use `npm run dist`.  You will need to modify the bundle ID info to your own.
 
